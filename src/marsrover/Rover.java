@@ -1,6 +1,7 @@
 package marsrover;
 
 import static java.lang.String.format;
+import static marsrover.Direction.*;
 
 class Rover {
     private Coordinates coordinates;
@@ -17,5 +18,9 @@ class Rover {
 
     Direction getDirection() {
         return direction;
+    }
+
+    public void recieveCommand(char r) {
+        direction = Direction.values()[direction.ordinal() == 3 ? 0 : direction.ordinal() + 1];
     }
 }
