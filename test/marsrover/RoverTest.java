@@ -3,10 +3,10 @@ package marsrover;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static marsrover.Coordinates.at;
 import static marsrover.Direction.*;
 import static org.junit.Assert.assertEquals;
@@ -87,4 +87,21 @@ public class RoverTest {
         assertEquals(NORTH, rover.getDirection());
         assertEquals(at(1, 2), rover.getCoordinates());
     }
+
+    @Test
+    public void givenObstacleAheadWhenRoverRecievesForwardCommandThenRoverKeepsPosition() throws Exception {
+        rover = new Rover(at(1, 2), NORTH, new HashSet<>(singletonList(at(1, 1))));
+        rover.recieveCommand('F');
+        assertEquals(NORTH, rover.getDirection());
+        assertEquals(at(1,2), rover.getCoordinates());
+    }
+
+    @Test
+    public void givenCommandsWhenRoverMeetsObstacleOntHeWayThenRoverStops() throws Exception {
+        rover = new Rover(at(1, 2), NORTH, new HashSet<>(singletonList(at(1, 1))));
+        rover.recieveCommands("FRF");
+        assertEquals(NORTH, rover.getDirection());
+        assertEquals(at(1,2), rover.getCoordinates());
+    }
+
 }
