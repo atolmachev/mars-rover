@@ -71,4 +71,20 @@ public class RoverTest {
         assertEquals(at(0, 2), rover.getCoordinates());
         assertEquals(WEST, rover.getDirection());
     }
+
+    @Test
+    public void givenCommandSequenceThenRoverChangesPositionAccordingly() throws Exception {
+        rover = new Rover(at(1, 2), NORTH);
+        rover.recieveCommands("RFF");
+        assertEquals(EAST, rover.getDirection());
+        assertEquals(at(3, 2), rover.getCoordinates());
+    }
+
+    @Test
+    public void givenEmptyCommandSequenceThenRoverKeepsSamePosition() throws Exception {
+        rover = new Rover(at(1, 2), NORTH);
+        rover.recieveCommands("");
+        assertEquals(NORTH, rover.getDirection());
+        assertEquals(at(1, 2), rover.getCoordinates());
+    }
 }

@@ -23,4 +23,11 @@ class Rover {
         if (c == 'R') direction = direction.right();
         else if (c == 'F') coordinates = coordinates.plus(direction.vector);
     }
+
+    void recieveCommands(String cmds) {
+        char[] chars = cmds.toCharArray();
+        for (char c : chars) {
+            recieveCommand(c);
+        }
+    }
 }
