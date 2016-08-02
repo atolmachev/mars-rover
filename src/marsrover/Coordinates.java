@@ -2,8 +2,10 @@ package marsrover;
 
 import java.util.Objects;
 
+import static java.lang.String.format;
+
 class Coordinates {
-    private final int x, y;
+    final int x, y;
 
     public Coordinates(int x, int y) {
         this.x = x;
@@ -26,5 +28,14 @@ class Coordinates {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return format("(%d, %d)", x, y);
+    }
+
+    public Coordinates plus(Coordinates c) {
+        return new Coordinates(x + c.x, y + c.y);
     }
 }

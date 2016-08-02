@@ -39,4 +39,36 @@ public class RoverTest {
         rover.recieveCommand('R');
         assertEquals(rover.getDirection(), NORTH);
     }
+
+    @Test
+    public void givenForwardCommandWhenRoverIsDirectedToNorthThenRoverYCoordinateDecrements() throws Exception {
+        rover = new Rover(at(1, 2), NORTH);
+        rover.recieveCommand('F');
+        assertEquals(at(1, 1), rover.getCoordinates());
+        assertEquals(NORTH, rover.getDirection());
+    }
+
+    @Test
+    public void givenForwardCommandWhenRoverIsDirectedToEastThenRoverXCoordinateIncrements() throws Exception {
+        rover = new Rover(at(1, 2), EAST);
+        rover.recieveCommand('F');
+        assertEquals(at(2, 2), rover.getCoordinates());
+        assertEquals(EAST, rover.getDirection());
+    }
+
+    @Test
+    public void givenForwardCommandWhenRoverIsDirectedToSouthThenRoverYCoordinateIncrements() throws Exception {
+        rover = new Rover(at(1, 2), SOUTH);
+        rover.recieveCommand('F');
+        assertEquals(at(1, 3), rover.getCoordinates());
+        assertEquals(SOUTH, rover.getDirection());
+    }
+
+    @Test
+    public void givenForwardCommandWhenRoverIsDirectedToWestThenRoverXCoordinateDecrements() throws Exception {
+        rover = new Rover(at(1, 2), WEST);
+        rover.recieveCommand('F');
+        assertEquals(at(0, 2), rover.getCoordinates());
+        assertEquals(WEST, rover.getDirection());
+    }
 }
